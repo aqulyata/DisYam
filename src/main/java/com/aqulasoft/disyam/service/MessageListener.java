@@ -94,8 +94,9 @@ public class MessageListener extends ListenerAdapter {
         if (state == null) return;
 
         if (event.getMessageIdLong() != state.getMessage().getIdLong() && !emote.getEmoji().equals(EMOJI_OK)) return;
-
-        event.getReaction().removeReaction(event.getUser()).queue();
+        if (!emote.getEmoji().equals(EMOJI_DONE) || !emote.getEmoji().equals(EMOJI_LIKE) || !emote.getEmoji().equals(EMOJI_DISLIKE)){
+            event.getReaction().removeReaction(event.getUser()).queue();
+        }
         if (emote.isEmoji())
             switch (emote.getEmoji()) {
                 case EMOJI_PREVIOUS:
