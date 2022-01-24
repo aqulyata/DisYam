@@ -112,7 +112,10 @@ public class YandexMusicClient {
         String url = String.format("https://music.yandex.ru/handlers/playlist.jsx?owner=%s&kinds=%s&light=true&madeFor=&lang=%s&external-domain=music.yandex.ru&overembed=false&ncrnd=0.9083773647705418", username, playlistId, "ru");
         JsonNode body = Unirest.get(url).asJson().getBody();
         Unirest.config().reset().enableCookieManagement(true);
-        return new YaPlaylist(body.getObject().getJSONObject("playlist"));
+        if (body != null){
+            return new YaPlaylist(body.getObject().getJSONObject("playlist"));
+        }
+        else return null;
     }
 
     public static UserPlaylistDto getUserPlaylist(int kinds) {

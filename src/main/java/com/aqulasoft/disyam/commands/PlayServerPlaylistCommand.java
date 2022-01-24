@@ -20,8 +20,8 @@ public class PlayServerPlaylistCommand implements Command{
     public void handle(List<String> args, GuildMessageReceivedEvent event) {
         TextChannel channel = event.getChannel();
         if (joinVoice(event, channel)) return;
-        YaPlaylist playlist = getPlaylist(SecretManager.get("username"), PlaylistManager.getInstance().getKind(event.getGuild().getName()));
-        if (playlist.getTracks().size() == 0){
+        YaPlaylist playlist = getPlaylist(SecretManager.get("username"), PlaylistManager.getInstance(). getKind(event.getGuild().getName()));
+        if (playlist == null){
             System.out.println("playlist is empty");
             channel.sendMessage("Please add some tracks to your server playlist").queue();
             return;

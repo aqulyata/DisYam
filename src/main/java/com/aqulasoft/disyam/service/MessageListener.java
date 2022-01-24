@@ -146,8 +146,8 @@ public class MessageListener extends ListenerAdapter {
                     });
                     return;
                 case EMOJI_LIKE:
-                    state.getMessage().removeReaction(EMOJI_LIKE).queue();
                     state.getMessage().addReaction(EMOJI_DISLIKE).queue();
+                    state.getMessage().removeReaction(EMOJI_LIKE).queue();
                     String guildName = event.getGuild().getName();
                     if (state instanceof PlayerState) {
                         long id = ((PlayerState) state).getCurrentTrack().getId();
@@ -167,8 +167,9 @@ public class MessageListener extends ListenerAdapter {
                     return;
                 case EMOJI_DISLIKE:
                     String serverName = event.getGuild().getName();
-                    state.getMessage().removeReaction(EMOJI_DISLIKE).queue();
                     state.getMessage().addReaction(EMOJI_LIKE).queue();
+                    state.getMessage().removeReaction(EMOJI_DISLIKE).queue();
+
                     if (state instanceof PlayerState) {
                         long id = ((PlayerState) state).getCurrentTrack().getId();
                         if (!PlaylistManager.getInstance().isInPlaylist(id, serverName)) return;

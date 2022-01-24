@@ -28,7 +28,7 @@ public class SettingsThread extends Thread {
                     }
                 }
                 try {
-                    SettingsThread.sleep(3000);
+                    SettingsThread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
